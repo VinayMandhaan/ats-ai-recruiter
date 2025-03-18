@@ -1,3 +1,4 @@
+import JobTitle from "../components/Recruitement/JobTitle"
 import UploadFile from "../components/Recruitement/UploadFile"
 
 
@@ -6,7 +7,7 @@ const Recruitement = () => {
 
     return (
         <div>
-            <UploadFile />
+            <JobTitle />
         </div>
     )
 }
