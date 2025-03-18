@@ -3,8 +3,11 @@
 import axios from "axios"
 import { useRef, useState } from "react"
 import Button from "../Generics/Button"
+import { setCandidateSummary } from "@/app/redux/reducers/candidateSlice"
+import { useDispatch } from "react-redux"
 
 const UploadFile = () => {
+    const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -17,6 +20,7 @@ const UploadFile = () => {
             await axios.post('/api/upload-cv', formData)
                 .then(response => {
                     console.log(response.data)
+                    dispatch(setCandidateSummary(response.data.text))
                     setIsLoading(false)
 
                 })

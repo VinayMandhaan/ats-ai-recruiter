@@ -1,3 +1,4 @@
+import UploadFile from "../components/Recruitement/UploadFile"
 
 
 const Recruitement = () => {
@@ -5,7 +6,7 @@ const Recruitement = () => {
 
     return (
         <div>
-
+            <UploadFile />
         </div>
     )
 }
