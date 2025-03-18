@@ -64,7 +64,7 @@ const JobTitle = () => {
                         dispatch(setJobTitle(''))
                     }} className="border-white border-2 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-white hover:text-black transition-all duration-300">Custom Job Title </button>
                     {displayCustomJobTitle && (
-                        <input type="text" placeholder="Enter Job Title" className="border-white border-2 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-white hover:text-black transition-all duration-300 focus:outline-none" onChange={(e) => {
+                        <input type="text" placeholder="Enter Job Title" className="border-white border-2 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-white hover:text-black transition-all duration-300 focus:outline-none text-center" onChange={(e) => {
                             dispatch(setJobTitle(e.target.value))
                         }} />
                     )}
