@@ -25,9 +25,6 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({
             text: data.text,
-            numPages: data.numpages,
-            info: data.info,
-            metadata: data.metadata
         })
 
     } catch (error) {
