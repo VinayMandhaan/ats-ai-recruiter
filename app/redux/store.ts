@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import candidateReducer from "./reducers/candidateSlice"
 import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from 'redux-persist'
-
+import uiReducer from "./reducers/uiSlice"
 const persistConfig = {
     key: 'root',
     storage,
@@ -14,6 +14,7 @@ const persistedReducer = persistReducer(persistConfig, candidateReducer)
 export const store = configureStore({
     reducer: {
         candidateReducer: persistedReducer,
+        uiReducer: uiReducer,
     },
     devTools: process.env.NODE_ENV !== "production",
     middleware: (getDefaultMiddleware) =>

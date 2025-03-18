@@ -4,10 +4,13 @@ import axios from "axios"
 import { useRef, useState } from "react"
 import Button from "../Generics/Button"
 import { setCandidateSummary } from "@/app/redux/reducers/candidateSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { setCurrentStep } from "@/app/redux/reducers/uiSlice"
+import { RootState } from "@/app/redux/store"
 
 const UploadFile = () => {
     const dispatch = useDispatch()
+    const currentStep = useSelector((state: RootState) => state.uiReducer.currentStep)
     const [isLoading, setIsLoading] = useState(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -21,6 +24,7 @@ const UploadFile = () => {
                 .then(response => {
                     console.log(response.data)
                     dispatch(setCandidateSummary(response.data.text))
+                    dispatch(setCurrentStep(+currentStep + 1))  
                     setIsLoading(false)
 
                 })

@@ -6,10 +6,12 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Button from "../Generics/Button"
 import Header from "../Generics/Header"
+import { setCurrentStep } from "@/app/redux/reducers/uiSlice"
 
 const JobTitle = () => {
     const dispatch = useDispatch()
     const jobTitle = useSelector((state: RootState) => state.candidateReducer.jobTitle)
+    const currentStep = useSelector((state: RootState) => state.uiReducer.currentStep)
     const candidateSummary = useSelector((state: RootState) => state.candidateReducer.candidateSummary)
     const [displayCustomJobTitle, setDisplayCustomJobTitle] = useState(false)
     const [jobTitles, setJobTitles] = useState<string[]>([])
@@ -70,7 +72,7 @@ const JobTitle = () => {
                 {
                     jobTitle && (
                         <Button onClick={() => {
-
+                            dispatch(setCurrentStep(+currentStep + 1))
                         }}>Next</Button>
                     )
                 }
