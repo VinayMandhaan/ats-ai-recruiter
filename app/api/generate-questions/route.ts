@@ -61,13 +61,11 @@ export async function POST(request: NextRequest) {
 
     const questions = JSON.parse(completion.choices[0].message.content || '{}')
 
-    // Validate and ensure exactly 15 questions
     const technical = questions.technical || []
     const behavioral = questions.behavioral || []
     const situational = questions.situational || []
 
     if (technical.length !== 6 || behavioral.length !== 5 || situational.length !== 4) {
-      // If counts are wrong, trim or pad arrays to match required lengths
       questions.technical = technical.slice(0, 6)
       questions.behavioral = behavioral.slice(0, 5)
       questions.situational = situational.slice(0, 4)
