@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     1. Assess technical skills relevant to the role
     2. Evaluate behavioral competencies
     3. Present situational scenarios
-    4. Candidate's specific experience
+    4. Are tailored to the candidate's specific experience
     
     Format the response as a JSON object with the following structure:
     {
