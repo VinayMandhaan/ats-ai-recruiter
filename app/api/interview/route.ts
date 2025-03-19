@@ -75,11 +75,33 @@ export async function POST(request: NextRequest) {
       - Provide clear, concise questions
       - Adapt your questions based on the candidate's experience level and role
       - Only ask follow-up questions if the answer needs clarification
-    
+      - If the answer is clear and demonstrates understanding, move to the next topic
+      
+      For Situational Questions:
+      - Present situational scenarios
+      - Present realistic scenarios that could occur in their role
+      - Include specific details like team size, deadlines, and constraints
+      - Focus on common challenges in their industry
+      - Include interpersonal situations (conflicts, leadership, communication)
+      - Add business context (budgets, client demands, market conditions)
+      - Make scenarios specific to their experience level
+      - Include both positive and challenging situations
+      
       Current context:
       - Question asked: ${question}
       - Candidate's answer: ${answer}
-      - Time taken: ${timing} seconds`
+      - Time taken: ${timing} seconds
+      - Follow-up count for current topic: ${currentTopicQuestions}
+      - Should change topic: ${shouldChangeTopic}
+      - Current question type: ${questionType}
+      - Question counts: Technical (${questionCounts.technical}/4), Behavioral (${questionCounts.behavioral}/4), Situational (${questionCounts.situational}/4)
+      - Available topics: ${topics.join(', ')}
+      
+      ${shouldChangeTopic ? 'Please change the topic and ask a new question from a different area.' : 'Only ask a follow-up question if the answer needs clarification. Otherwise, move to the next topic.'}
+      
+      ${questionType === 'technical' ? 'Focus on role-specific technical skills and knowledge.' :
+                    questionType === 'behavioral' ? 'Focus on past experiences and behavior in work situations.' :
+                        'Present a realistic scenario with specific details, constraints, and business context that could occur in their role.'}`
         }
 
         // Prepare the conversation history
