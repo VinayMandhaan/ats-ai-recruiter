@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Button from "../components/Generics/Button"
 import Header from "../components/Generics/Header"
 import { RootState } from "../redux/store"
@@ -32,6 +32,13 @@ const Interview = () => {
         behavioral: 0,
         situational: 0
     })
+    const [totalQuestions, setTotalQuestions] = useState(0)
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
 
     const startInterview = async () => {
@@ -43,6 +50,9 @@ const Interview = () => {
             }).then((response) => {
                 const data = response.data
                 const firstQuestion = data.technical[0]
+                const totalQues = Object.values(data).reduce((sum, category) => sum + category?.length, 0);
+                console.log('totalQues', totalQues)
+                console.log('data', data)
                 setCurrentQuestion(firstQuestion)
                 setMessages([{
                     role: 'assistant',
@@ -51,6 +61,7 @@ const Interview = () => {
                 }])
                 setStartTime(Date.now())
                 setIsLoading(false)
+                setTotalQuestions(totalQues)
             }).catch((error) => {
                 console.log('Error', error)
                 setIsLoading(false)
@@ -165,6 +176,7 @@ const Interview = () => {
                         ) : (
                             <div className=" space-y-6 bg-white rounded-lg p-6 max-w-[80%]">
                                 <div className="h-[500px] overflow-y-auto space-y-4">
+                                    <p>Question {Math.floor(messages.length / 2) + 1} of {totalQuestions}</p>
                                     {messages.map((message, index) => (
                                         <div
                                             key={index}
