@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation"
 const JobDescription = () => {
     const dispatch = useDispatch()
     const router = useRouter()
-
     const jobTitle = useSelector((state: RootState) => state.candidateReducer.jobTitle)
     const jobExperience = useSelector((state: RootState) => state.candidateReducer.jobExperience)
     const jobDescription = useSelector((state: RootState) => state.candidateReducer.jobDescription)
@@ -84,6 +83,7 @@ const JobDescription = () => {
                 {
                     jobTitle && (
                         <Button onClick={() => {
+                            router.push('/interview')
                         }}>Invite Candidate for Interview</Button>
                     )
                 }

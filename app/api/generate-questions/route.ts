@@ -23,7 +23,20 @@ export async function POST(request: NextRequest) {
     ${jobDescription}
     
     Candidate's CV:
-    ${cvText}`
+    ${cvText}
+    
+    Generate a structured set of questions that:
+    1. Assess technical skills relevant to the role
+    2. Evaluate behavioral competencies
+    3. Present situational scenarios
+    4. Candidate's specific experience
+    
+    Format the response as a JSON object with the following structure:
+    {
+      "technical": ["question1", "question2", ...],
+      "behavioral": ["question1", "question2", ...],
+      "situational": ["question1", "question2", ...]
+    }`
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini", 

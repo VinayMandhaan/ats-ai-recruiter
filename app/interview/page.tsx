@@ -12,7 +12,7 @@ const Interview = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState('')
     const [messages, setMessages] = useState<{ role: string; content: string; timestamp: number }[]>([])
-    const [startTime, setStartTime] = useState<number | null>(null);
+    const [startTime, setStartTime] = useState<number | null>(null)
     const jobDescription = useSelector((state: RootState) => state.candidateReducer.jobDescription)
     const candidateSummary = useSelector((state: RootState) => state.candidateReducer.candidateSummary)
 
@@ -27,7 +27,7 @@ const Interview = () => {
                 const firstQuestion = data.technical[0]
                 setCurrentQuestion(firstQuestion)
                 setMessages([{
-                    role: 'assistant' as const,
+                    role: 'assistant',
                     content: firstQuestion,
                     timestamp: Date.now()
                 }])
