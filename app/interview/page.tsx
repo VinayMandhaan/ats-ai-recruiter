@@ -8,13 +8,20 @@ import { useSelector } from "react-redux"
 import axios from "axios"
 
 
+interface Message {
+    role: 'assistant' | 'user';
+    content: string;
+    timestamp: number;
+    timing?: number;
+}
+
 const Interview = () => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const jobDescription = useSelector((state: RootState) => state.candidateReducer.jobDescription)
     const candidateSummary = useSelector((state: RootState) => state.candidateReducer.candidateSummary)
     const [isLoading, setIsLoading] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState('')
-    const [messages, setMessages] = useState<{ role: string; content: string; timestamp: number }[]>([])
+    const [messages, setMessages] = useState<Message[]>([])
     const [startTime, setStartTime] = useState<number | null>(null)
     const [answer, setAnswer] = useState<string>('')
     const [questionCounts, setQuestionCounts] = useState({
@@ -42,11 +49,11 @@ const Interview = () => {
                 setStartTime(Date.now())
                 setIsLoading(false)
             }).catch((error) => {
-                console.error('Error', error)
+                console.log('Error', error)
                 setIsLoading(false)
             })
         } catch (error) {
-            console.error('Error', error)
+            console.log('Error', error)
         }
     }
 
@@ -95,12 +102,12 @@ const Interview = () => {
                 }
 
             }).catch((error) => {
-                console.error('Error', error)
+                console.log('Error', error)
                 setIsLoading(false)
             })
 
         } catch (error) {
-            console.error('Error', error)
+            console.log('Error', error)
         }
     }
 

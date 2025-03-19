@@ -4,12 +4,17 @@ import OpenAI from 'openai'
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
+interface InterviewMessage {
+    role: 'system' | 'user' | 'assistant';
+    content: string;
+    timestamp?: number;
+}
 
 export async function POST(request: NextRequest) {
     try {
         const { messages, question, answer, timing, cvText, questionCounts } = await request.json()
 
-        const currentTopicQuestions = messages?.filter((msg: any) =>
+        const currentTopicQuestions = messages?.filter((msg: InterviewMessage) =>
             msg?.role === 'assistant' && msg?.content.includes(question)
         ).length
 
@@ -104,10 +109,9 @@ export async function POST(request: NextRequest) {
                         'Present a realistic scenario with specific details, constraints, and business context that could occur in their role.'}`
         }
 
-        // Prepare the conversation history
         const conversationHistory = [
             systemMessage,
-            ...messages.map((msg) => ({
+            ...messages.map((msg: InterviewMessage) => ({
                 role: msg?.role,
                 content: msg?.content
             }))
