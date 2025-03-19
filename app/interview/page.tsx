@@ -24,6 +24,8 @@ const Interview = () => {
     const [messages, setMessages] = useState<Message[]>([])
     const [startTime, setStartTime] = useState<number | null>(null)
     const [answer, setAnswer] = useState<string>('')
+    const [showResults, setShowResults] = useState(false)
+    const [results, setResults] = useState<any>(null)
     const [questionCounts, setQuestionCounts] = useState({
         technical: 0,
         behavioral: 0,
@@ -112,6 +114,24 @@ const Interview = () => {
     }
 
     const endInterview = async () => {
+        setIsLoading(true)
+        try {
+            await axios.post('/api/interview-result', {
+                messages,
+                jobDescription,
+                cvText: candidateSummary
+            }).then((response) => {
+                const data = response.data
+                setResults(data)
+                setShowResults(true)
+                setIsLoading(false)
+            }).catch((error) => {
+                console.log('Error', error)
+                setIsLoading(false)
+            })
+        } catch (error) {
+            console.log('Error', error)
+        }
     }
 
     return (
