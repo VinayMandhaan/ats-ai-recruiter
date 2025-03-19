@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import pdfParse from 'pdf-parse';
+import { NextRequest, NextResponse } from 'next/server'
+import pdfParse from 'pdf-parse'
+import mammoth from 'mammoth'
 
 export async function POST(request: NextRequest) {
     try {
@@ -10,27 +11,45 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 { error: 'No file found' },
                 { status: 400 }
-            );
+            )
         }
-        if (!file.type.includes('pdf')) {
+
+        const supportedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain']
+        if (!supportedTypes.includes(file.type)) {
             return NextResponse.json(
-                { error: 'File must be a PDF' },
+                { error: 'File must be a PDF, DOCX, or TXT file' },
                 { status: 400 }
             )
         }
+
         const arrayBuffer = await file.arrayBuffer()
         const buffer = Buffer.from(arrayBuffer)
+        let text = ''
 
-        const data = await pdfParse(buffer)
+        switch (file.type) {
+            case 'application/pdf':
+                const pdfData = await pdfParse(buffer)
+                text = pdfData.text
+                break
+            
+            case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+                const docxResult = await mammoth.extractRawText({ buffer })
+                text = docxResult.value
+                break
+            
+            case 'text/plain':
+                text = buffer.toString('utf-8')
+                break
+        }
 
         return NextResponse.json({
-            text: data.text,
+            text,
         })
 
     } catch (error) {
         console.log('Error', error)
         return NextResponse.json(
-            { error: 'Error processing PDF file' },
+            { error: 'Error' },
             { status: 500 }
         )
     }
