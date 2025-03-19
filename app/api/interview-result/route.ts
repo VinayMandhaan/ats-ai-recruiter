@@ -31,12 +31,59 @@ export async function POST(request: NextRequest) {
     - Fastest Response: ${minResponseTime} seconds
     - Slowest Response: ${maxResponseTime} seconds
     
+    Please provide a comprehensive evaluation in the following JSON format:
+    {
+      "scores": {
+        "technicalAcumen": {
+          "score": number (0-100),
+          "explanation": string,
+          "strengths": string[],
+          "areasForImprovement": string[]
+        },
+        "communicationSkills": {
+          "score": number (0-100),
+          "explanation": string,
+          "strengths": string[],
+          "areasForImprovement": string[]
+        },
+        "responsiveness": {
+          "score": number (0-100),
+          "explanation": string,
+          "strengths": string[],
+          "areasForImprovement": string[]
+        },
+        "problemSolving": {
+          "score": number (0-100),
+          "explanation": string,
+          "strengths": string[],
+          "areasForImprovement": string[]
+        },
+        "culturalFit": {
+          "score": number (0-100),
+          "explanation": string,
+          "strengths": string[],
+          "areasForImprovement": string[]
+        }
+      },
+      "overallScore": number (0-100),
+      "summary": string,
+      "recommendation": string,
+      "keyHighlights": string[],
+      "developmentAreas": string[]
+    }
+    
     Evaluation Guidelines:
-    1. Technical Acumen: Evaluate depth of technical knowledge
+    1. Technical Acumen: Evaluate depth of technical knowledge, accuracy of answers, and ability to explain complex concepts
     2. Communication Skills: Assess clarity, structure, and effectiveness of responses
     3. Responsiveness: Consider both speed and quality of responses
     4. Problem-Solving: Evaluate approach to technical challenges
-    5. Cultural Fit: Assess alignment with company values and team dynamics`
+    5. Cultural Fit: Assess alignment with company values and team dynamics
+    
+    Timing Considerations:
+    - Responses under 30 seconds: Excellent
+    - 30-60 seconds: Good
+    - 60-120 seconds: Average
+    - Over 120 seconds: Needs improvement`
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -54,7 +101,7 @@ export async function POST(request: NextRequest) {
       response_format: { type: "json_object" }
     })
 
-    const evaluation = JSON.parse(completion.choices[0].message.content)
+    const evaluation = JSON.parse(completion.choices[0].message.content || '{}')
 
     return NextResponse.json({
       ...evaluation,

@@ -102,6 +102,7 @@ const Interview = () => {
                 if (data.questionCounts) {
                     setQuestionCounts(data.questionCounts)
                 }
+                setIsLoading(false)
 
             }).catch((error) => {
                 console.log('Error', error)
