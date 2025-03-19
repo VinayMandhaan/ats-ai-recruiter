@@ -24,6 +24,13 @@ const JobDescription = () => {
         fetchJobDescription()
     }, [])
 
+    const isFormValid = () => {
+        if(jobDescription?.length > 20) {
+            return true
+        }
+        return false
+    }
+
     const fetchJobDescription = async () => {
         try {
             setIsLoading(true)
@@ -82,7 +89,7 @@ const JobDescription = () => {
                 </div>
                 {
                     jobTitle && (
-                        <Button onClick={() => {
+                        <Button disabled={!isFormValid()} onClick={() => {
                             router.push('/interview')
                         }}>Invite Candidate for Interview</Button>
                     )
