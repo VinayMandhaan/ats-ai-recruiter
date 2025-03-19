@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error', error)
     return NextResponse.json(
-      { error: 'Error generating questions' },
+      { error: 'Error' },
       { status: 500 }
     )
   }
