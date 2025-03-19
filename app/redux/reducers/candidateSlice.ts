@@ -4,11 +4,15 @@ import { createSlice } from "@reduxjs/toolkit";
 type CandidateState = {
     candidateSummary: String;
     jobTitle: String;
+    jobExperience: String;
+    jobDescription: String;
 };
 
 const initialState = {
     candidateSummary: "",
     jobTitle: "",
+    jobExperience: "",
+    jobDescription: "",
 } as CandidateState;
 
 export const candidateSlice = createSlice({
@@ -21,6 +25,12 @@ export const candidateSlice = createSlice({
         setJobTitle(state, action) {
             state.jobTitle = action.payload
         },
+        setJobExperience(state, action) {
+            state.jobExperience = action.payload
+        },
+        setJobDescription(state, action) {
+            state.jobDescription = action.payload
+        },
         reset: () => initialState,
 
     },
@@ -29,6 +39,8 @@ export const candidateSlice = createSlice({
 export const {
     setCandidateSummary,
     setJobTitle,
+    setJobExperience,
+    setJobDescription,
     reset,
 } = candidateSlice.actions;
 export default candidateSlice.reducer;

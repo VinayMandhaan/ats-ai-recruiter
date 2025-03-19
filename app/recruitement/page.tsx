@@ -3,8 +3,8 @@ import JobTitle from "../components/Recruitement/JobTitle"
 import UploadFile from "../components/Recruitement/UploadFile"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-
-
+import JobExperience from "../components/Recruitement/JobExperience"    
+import JobDescription from "../components/Recruitement/JobDescription"  
 const Recruitement = () => {
     const currentStep = useSelector((state: RootState) => state.uiReducer.currentStep)
 
@@ -14,7 +14,10 @@ const Recruitement = () => {
                 return <UploadFile />
             case 1:
                 return <JobTitle />
-                break;
+            case 2:
+                return <JobExperience />
+            case 3:
+                return <JobDescription />
         }
     }
 
