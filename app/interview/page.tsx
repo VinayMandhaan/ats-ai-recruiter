@@ -6,6 +6,7 @@ import Header from "../components/Generics/Header"
 import { RootState } from "../redux/store"
 import { useSelector } from "react-redux"
 import axios from "axios"
+import InterviewResult from "../components/Interview/InterviewResult"
 
 
 interface Message {
@@ -133,6 +134,14 @@ const Interview = () => {
         } catch (error) {
             console.log('Error', error)
         }
+    }
+
+    if (showResults && results) {
+        return (
+          <div className='h-screen w-screen'>
+            <InterviewResult result={results} />;
+          </div>
+        )
     }
 
     return (
