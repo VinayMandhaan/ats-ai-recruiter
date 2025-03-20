@@ -33,7 +33,7 @@ describe('Upload CV API', () => {
         expect(response.data).toEqual(mockResponse.data)
     })
 
-    it('should handle upload errors appropriately', async () => {
+    it('should handle upload errors', async () => {
         const mockFile = new File(['dummy content'], 'test.pdf', { type: 'application/pdf' })
         const mockError = new Error('Upload failed')
 
@@ -51,7 +51,7 @@ describe('Upload CV API', () => {
         ).rejects.toThrow('Upload failed')
     })
 
-    it('should reject non-PDF/DOC files', async () => {
+    it('should throw error for non-PDF/DOC files', async () => {
         const mockFile = new File(['dummy content'], 'test.txt', { type: 'text/plain' })
         const formData = new FormData()
         formData.append('file', mockFile)
