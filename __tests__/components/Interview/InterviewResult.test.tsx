@@ -1,6 +1,15 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import InterviewResult from '../../../app/components/Interview/InterviewResult'
+import { Providers } from '@/app/redux/provider';
+
+jest.mock("next/navigation", () => ({
+    useRouter() {
+      return {
+        prefetch: () => null
+      };
+    }
+  }));
 
 describe('InterviewResult', () => {
     const mockResult = {
@@ -31,7 +40,11 @@ describe('InterviewResult', () => {
     }
 
     it('renders interview result correctly', () => {
-        render(<InterviewResult result={mockResult} />)
+        render(
+            <Providers>
+                <InterviewResult result={mockResult} />
+            </Providers>
+        )
 
         expect(screen.getByText('85%')).toBeInTheDocument()
         expect(screen.getByText('Great performance overall')).toBeInTheDocument()

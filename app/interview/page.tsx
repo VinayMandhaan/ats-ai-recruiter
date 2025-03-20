@@ -220,7 +220,7 @@ const Interview = () => {
                                         </button>
                                         <button
                                             onClick={endInterview}
-                                            disabled={isLoading || messages.length < 2}
+                                            disabled={isLoading || messages.length < 6}
                                             className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 disabled:opacity-50"
                                         >
                                             End Interview
