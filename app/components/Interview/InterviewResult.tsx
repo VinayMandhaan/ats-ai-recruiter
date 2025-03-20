@@ -6,9 +6,23 @@ import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
 import { reset } from "@/app/redux/reducers/candidateSlice"
 interface Result {
-    results: any
+    overallScore: number
+    summary: string
+    recommendation: string
+    scores: {
+        [key: string]: {
+            score: number
+            explanation: string
+            strengths: string[]
+            areasForImprovement: string[]
+        }
+    }
+    timingMetrics: {
+        averageResponseTime: number
+        minResponseTime: number
+        maxResponseTime: number
+    }
 }
-
 const InterviewResult = ({ result }: { result: Result }) => {
     const router = useRouter()
     const dispatch = useDispatch()

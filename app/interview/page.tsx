@@ -50,6 +50,7 @@ const Interview = () => {
             }).then((response) => {
                 const data = response.data
                 const firstQuestion = data.technical[0]
+                //@ts-ignore
                 const totalQues = Object.values(data).reduce((sum, category) => sum + category?.length, 0);
                 console.log('totalQues', totalQues)
                 console.log('data', data)
@@ -61,6 +62,7 @@ const Interview = () => {
                 }])
                 setStartTime(Date.now())
                 setIsLoading(false)
+                //@ts-ignore
                 setTotalQuestions(totalQues)
             }).catch((error) => {
                 console.log('Error', error)

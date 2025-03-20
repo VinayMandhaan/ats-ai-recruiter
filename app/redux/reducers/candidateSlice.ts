@@ -5,7 +5,7 @@ type CandidateState = {
     candidateSummary: String;
     jobTitle: String;
     jobExperience: String;
-    jobDescription: String;
+    jobDescription: any;
 };
 
 const initialState = {
