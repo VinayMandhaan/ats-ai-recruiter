@@ -74,7 +74,7 @@ const Interview = () => {
     const handleSubmitAnswer = async () => {
         if (!answer?.trim() || !currentQuestion) return;
 
-        const timing = startTime ? Math.round((Date.now() - startTime) / 1000) : 0;
+        const timing = startTime ? Math.round((Date.now() - startTime) / 1000) : 0
 
         const newMessages = [
             ...messages,
@@ -85,9 +85,9 @@ const Interview = () => {
                 timing
             }
         ];
-        setMessages(newMessages);
-        setAnswer('');
-        setIsLoading(true);
+        setMessages(newMessages)
+        setAnswer('')
+        setIsLoading(true)
 
         try {
             await axios.post('/api/interview', {
@@ -107,8 +107,8 @@ const Interview = () => {
                     role: 'assistant' as const,
                     content: data.question,
                     timestamp: data.timestamp
-                }]);
-                setCurrentQuestion(data.question);
+                }])
+                setCurrentQuestion(data.question)
                 setStartTime(Date.now())
 
                 if (data.questionCounts) {
@@ -150,7 +150,7 @@ const Interview = () => {
     if (showResults && results) {
         return (
           <div className='h-screen w-screen'>
-            <InterviewResult result={results} />;
+            <InterviewResult result={results} />
           </div>
         )
     }
@@ -233,6 +233,6 @@ const Interview = () => {
             </div>
         </div>
     )
-};
+}
 
 export default Interview

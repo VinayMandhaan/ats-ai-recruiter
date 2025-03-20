@@ -1,11 +1,14 @@
+'use client'
+import Button from "../Generics/Button"
 import Header from "../Generics/Header"
+import { useRouter } from "next/navigation"
 
 interface Result {
     results: any
 }
 
 const InterviewResult = ({ result }: { result: Result }) => {
-
+    const router = useRouter()
     const getScoreColor = (score: number) => {
         if (score >= 80) {
             return 'text-green-600'
@@ -19,6 +22,11 @@ const InterviewResult = ({ result }: { result: Result }) => {
 
     return (
         <div className="m-4 mt-6">
+            <div className="absolute top-0 left-6">
+                <Button onClick={() => router.push('/')}>
+                    Home
+                </Button>
+            </div>
             <div className="text-center">
                 <Header title="Interview Score" subTitle="Your score is based on your response time, problem solving skills, technical knowledge, and cultural fit." />
                 <div className={`text-5xl font-bold mt-4`}>
@@ -49,7 +57,7 @@ const InterviewResult = ({ result }: { result: Result }) => {
                             <div>
                                 <h4 className="font-semibold text-gray-900 mb-2">Strengths</h4>
                                 <ul className="list-disc list-inside text-gray-700">
-                                    {data.strengths.map((strength, index) => (
+                                    {data?.strengths?.map((strength, index) => (
                                         <li key={index}>{strength}</li>
                                     ))}
                                 </ul>
@@ -57,7 +65,7 @@ const InterviewResult = ({ result }: { result: Result }) => {
                             <div>
                                 <h4 className="font-semibold text-gray-900 mb-2">Areas for Improvement</h4>
                                 <ul className="list-disc list-inside text-gray-700">
-                                    {data.areasForImprovement.map((area, index) => (
+                                    {data?.areasForImprovement?.map((area, index) => (
                                         <li key={index}>{area}</li>
                                     ))}
                                 </ul>
@@ -71,19 +79,19 @@ const InterviewResult = ({ result }: { result: Result }) => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                         <div className="text-2xl font-bold text-gray-900">
-                            {result?.timingMetrics.averageResponseTime.toFixed(1)}s
+                            {result?.timingMetrics?.averageResponseTime?.toFixed(1)}s
                         </div>
                         <div className="text-gray-600">Average Response Time</div>
                     </div>
                     <div className="text-center">
                         <div className="text-2xl font-bold text-gray-900">
-                            {result?.timingMetrics.minResponseTime}s
+                            {result?.timingMetrics?.minResponseTime}s
                         </div>
                         <div className="text-gray-600">Fastest Response</div>
                     </div>
                     <div className="text-center">
                         <div className="text-2xl font-bold text-gray-900">
-                            {result?.timingMetrics.maxResponseTime}s
+                            {result?.timingMetrics?.maxResponseTime}s
                         </div>
                         <div className="text-gray-600">Slowest Response</div>
                     </div>

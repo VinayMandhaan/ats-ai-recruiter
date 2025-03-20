@@ -67,9 +67,7 @@ export async function POST(request: NextRequest) {
       },
       "overallScore": number (0-100),
       "summary": string,
-      "recommendation": string,
-      "keyHighlights": string[],
-      "developmentAreas": string[]
+      "recommendation": string
     }
     
     Evaluation Guidelines:
