@@ -3,7 +3,7 @@ import OpenAI from 'openai'
 
 const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
-  apiKey: "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",
+  apiKey: "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",
 })
 
 export async function POST(request: NextRequest) {
