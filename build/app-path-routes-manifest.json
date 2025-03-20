@@ -1,0 +1,13 @@
+{
+  "/api/generate-questions/route": "/api/generate-questions",
+  "/api/interview-result/route": "/api/interview-result",
+  "/api/interview/route": "/api/interview",
+  "/api/job-descriptions/route": "/api/job-descriptions",
+  "/api/upload-cv/route": "/api/upload-cv",
+  "/api/job-titles/route": "/api/job-titles",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/interview/page": "/interview",
+  "/page": "/",
+  "/recruitement/page": "/recruitement"
+}
