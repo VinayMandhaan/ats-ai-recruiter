@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## AI Based ATS Recruitement
 
-## Getting Started
+### Deployment URL
+### https://ats-ai-recruiter.vercel.app/
 
-First, run the development server:
+### Documentation for Prompt Engineering
+[Prompt Engineering for ATS.pdf](https://github.com/user-attachments/files/19373227/Prompt.Engineering.for.ATS.pdf)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Setup Instructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Clone the repo and run yarn
+* To run this project, run yarn dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Testing Instructions
 
-## Learn More
+* Run yarn test to run testing
 
-To learn more about Next.js, take a look at the following resources:
+### File Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### The APIs are in the api folder. 
+* /upload-cv - This API is used to parse the PDF,Docs and TextFile
+* /job-titles - This API takes CV and generates Job Titles related to that CV.
+* /job-descriptions - This API takes CV and selected Job title to generate Job Descriptions
+* /generate-questions - This API takes CV, Job Title and Job Descriptions to generate interview questions related to skills, experience and job title. The questions are categorized into technical, situational and behavioral
+* /interview - This API takes previous messages transcript, current question, timings, cvText and questionsCount to keep track of the interview and ask follow up questions for clarification.
+* /interview-result - This API takes messages transcript, jobDescription, cvText and generate interview result based on the answers and response time.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### There are 2 Routes.
+* /recruitement - Using Components UploadFile, JobTitle, JobExperience and JobDescription
+* /interview - Using Component Interview Result
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Preview
