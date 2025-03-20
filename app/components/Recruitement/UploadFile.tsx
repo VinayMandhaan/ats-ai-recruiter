@@ -7,6 +7,7 @@ import { setCandidateSummary } from "@/app/redux/reducers/candidateSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentStep } from "@/app/redux/reducers/uiSlice"
 import { RootState } from "@/app/redux/store"
+import { toast } from "react-toastify"
 
 const UploadFile = () => {
     const dispatch = useDispatch()
@@ -31,6 +32,7 @@ const UploadFile = () => {
                 .catch(error => {
                     console.error('Error', error)
                     setIsLoading(false)
+                    toast.error('Error uploading file')
 
                 })
         }

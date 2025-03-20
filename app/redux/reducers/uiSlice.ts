@@ -16,13 +16,13 @@ export const uiSlice = createSlice({
         setCurrentStep(state, action) {
             state.currentStep = action.payload
         },
-        reset: () => initialState,
+        resetCurrentStep: () => initialState,
 
     },
 });
 
 export const {
     setCurrentStep,
-    reset,
+    resetCurrentStep,
 } = uiSlice.actions;
 export default uiSlice.reducer;

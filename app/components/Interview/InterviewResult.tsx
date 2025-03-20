@@ -1,14 +1,17 @@
 'use client'
+import { resetCurrentStep } from "@/app/redux/reducers/uiSlice"
 import Button from "../Generics/Button"
 import Header from "../Generics/Header"
 import { useRouter } from "next/navigation"
-
+import { useDispatch } from "react-redux"
+import { reset } from "@/app/redux/reducers/candidateSlice"
 interface Result {
     results: any
 }
 
 const InterviewResult = ({ result }: { result: Result }) => {
     const router = useRouter()
+    const dispatch = useDispatch()
     const getScoreColor = (score: number) => {
         if (score >= 80) {
             return 'text-green-600'
@@ -23,7 +26,11 @@ const InterviewResult = ({ result }: { result: Result }) => {
     return (
         <div className="m-4 mt-6">
             <div className="absolute top-0 left-6">
-                <Button onClick={() => router.push('/')}>
+                <Button onClick={() => {
+                    dispatch(resetCurrentStep())
+                    dispatch(reset())
+                    router.push('/')
+                }}>
                     Home
                 </Button>
             </div>
